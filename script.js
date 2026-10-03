@@ -18,7 +18,7 @@ document.getElementById('startBtn').addEventListener('click', () => {
   let useDrinks = false;
   const FALL_SECONDS = 2; // seconds for a pumpkin to fall top to bottom (bigger = slower)
   let lastTime = null;
-  let pieces = Array.from({length: 112}, () => ({
+  let pieces = Array.from({length: 84}, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * -canvas.height,
     w: Math.random() * 8 + 4,
@@ -50,7 +50,7 @@ document.getElementById('startBtn').addEventListener('click', () => {
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.a);
-      drawPumpkin(Math.max(p.w, p.h));
+      drawPumpkin(Math.max(p.w, p.h) * 2);
       ctx.restore();
     });
     updateConfetti(dt);
