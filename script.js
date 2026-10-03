@@ -12,7 +12,7 @@ document.getElementById('startBtn').addEventListener('click', () => {
   const canvas = document.getElementById("confetti");
   const ctx = canvas.getContext("2d");
 
-  // Initial confetti setup (colorful rectangles)
+  // Initial confetti setup (little pumpkins)
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   let useDrinks = false;
@@ -27,18 +27,25 @@ document.getElementById('startBtn').addEventListener('click', () => {
     img: null
   }));
 
+  // Draws one little pumpkin (orange body + green stem)
+  function drawPumpkin(size) {
+    const r = size / 2;
+    ctx.fillStyle = '#e8650f';
+    ctx.beginPath(); ctx.ellipse(-r * 0.45, 0, r * 0.55, r * 0.75, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(r * 0.45, 0, r * 0.55, r * 0.75, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#ff8c2a';
+    ctx.beginPath(); ctx.ellipse(0, 0, r * 0.55, r * 0.8, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#2e7d32';
+    ctx.fillRect(-r * 0.12, -r * 1.05, r * 0.24, r * 0.35);
+  }
+
   function drawConfetti() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     pieces.forEach(p => {
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.a);
-      if (useDrinks && p.img) {
-        ctx.drawImage(p.img, -15, -15, 30, 30);
-      } else {
-        ctx.fillStyle = p.c;
-        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-      }
+      drawPumpkin(Math.max(p.w, p.h));
       ctx.restore();
     });
     updateConfetti();
