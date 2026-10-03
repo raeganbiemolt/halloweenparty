@@ -79,11 +79,10 @@ body {
 }
 
 .face-shake {
-  width: 24vw;
-  max-width: 200px;
-  height: 24vw;
-  max-height: 200px;
-  object-fit: contain;
+  height: 30vw;      /* all heads same height; widths follow each photo's shape */
+  max-height: 260px; /* cap for laptops */
+  width: auto;
+  flex-shrink: 0;
   animation: shake 2s infinite;
 }
 
