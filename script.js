@@ -16,6 +16,8 @@ document.getElementById('startBtn').addEventListener('click', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   let useDrinks = false;
+  const FALL_SECONDS = 2; // seconds for a pumpkin to fall top to bottom (bigger = slower)
+  let lastTime = null;
   let pieces = Array.from({length: 112}, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * -canvas.height,
@@ -23,7 +25,7 @@ document.getElementById('startBtn').addEventListener('click', () => {
     h: Math.random() * 10 + 4,
     a: Math.random() * Math.PI * 2,
     c: `hsl(${Math.random() * 360}, 100%, 50%)`,
-    d: Math.random() * 0.6 + 0.4,
+    d: Math.random() * 0.4 + 0.8, // small speed variation between pumpkins
     img: null
   }));
 
@@ -39,7 +41,10 @@ document.getElementById('startBtn').addEventListener('click', () => {
     ctx.fillRect(-r * 0.12, -r * 1.05, r * 0.24, r * 0.35);
   }
 
-  function drawConfetti() {
+  function drawConfetti(now) {
+    if (now === undefined) now = performance.now();
+    const dt = lastTime === null ? 0 : Math.min((now - lastTime) / 1000, 0.05);
+    lastTime = now;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     pieces.forEach(p => {
       ctx.save();
@@ -48,14 +53,14 @@ document.getElementById('startBtn').addEventListener('click', () => {
       drawPumpkin(Math.max(p.w, p.h));
       ctx.restore();
     });
-    updateConfetti();
+    updateConfetti(dt);
     requestAnimationFrame(drawConfetti);
   }
 
-  function updateConfetti() {
+  function updateConfetti(dt) {
     pieces.forEach(p => {
-      p.y += p.d;
-      p.a += 0.02;
+      p.y += (canvas.height / FALL_SECONDS) * p.d * dt;
+      p.a += 1.2 * dt;
       if (p.y > canvas.height) {
         p.y = 0;
         p.x = Math.random() * canvas.width;
