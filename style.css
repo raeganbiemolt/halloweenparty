@@ -72,18 +72,39 @@ body {
   width: 100vw;
   height: 100vh;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;   /* line the heads up along the bottom */
+  flex-wrap: wrap;
+  align-content: center;   /* keep the row centered on screen */
   background: transparent;
   z-index: 20;
-  gap: 0.5vw;
+  --u: min(1vw, 6px);      /* size unit: 1% of phone width, capped on laptops */
 }
 
 .face-shake {
-  height: 30vw;      /* all heads same height; widths follow each photo's shape */
-  max-height: 260px; /* cap for laptops */
-  width: auto;
+  height: auto;
   flex-shrink: 0;
   animation: shake 2s infinite;
+}
+
+/* Each face is sized from where the head sits in its PNG, so the empty
+   space around it is ignored and the heads can sit close/overlap.
+   1 = far left ... 4 = far right. 2.png is lifted so its speech bubble
+   stays above 3.png instead of overlapping it. */
+.face-overlay img:nth-child(1) {
+  width: calc(var(--u) * 42.88);
+  margin: calc(var(--u) * -12.25) calc(var(--u) * -11.16) calc(var(--u) * -9.38) calc(var(--u) * -10.77);
+}
+.face-overlay img:nth-child(2) {
+  width: calc(var(--u) * 70.35);
+  margin: calc(var(--u) * -14.41) calc(var(--u) * -37.44) calc(var(--u) * 9.92) calc(var(--u) * -9.91);
+}
+.face-overlay img:nth-child(3) {
+  width: calc(var(--u) * 48.06);
+  margin: calc(var(--u) * -14.58) calc(var(--u) * -10.49) calc(var(--u) * -20.72) calc(var(--u) * -9.32);
+}
+.face-overlay img:nth-child(4) {
+  width: calc(var(--u) * 39.72);
+  margin: calc(var(--u) * -14.78) calc(var(--u) * -5.39) calc(var(--u) * -7.23) calc(var(--u) * -11.50);
 }
 
 @keyframes shake {
