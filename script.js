@@ -23,7 +23,7 @@ document.getElementById('startBtn').addEventListener('click', () => {
     h: Math.random() * 10 + 4,
     a: Math.random() * Math.PI * 2,
     c: `hsl(${Math.random() * 360}, 100%, 50%)`,
-    d: Math.random() * 1.5 + 1,
+    d: Math.random() * 0.6 + 0.4,
     img: null
   }));
 
