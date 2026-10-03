@@ -75,11 +75,15 @@ body {
   align-items: center;
   background: transparent;
   z-index: 20;
+  gap: 2vw;
 }
 
 .face-shake {
-  width: 80vw;
-  max-width: 500px;
+  width: 22vw;
+  max-width: 150px;
+  height: 22vw;
+  max-height: 150px;
+  object-fit: contain;
   animation: shake 2s infinite;
 }
 
