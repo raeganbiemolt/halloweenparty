@@ -16,7 +16,7 @@ document.getElementById('startBtn').addEventListener('click', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   let useDrinks = false;
-  const FALL_SECONDS = 2; // seconds for a pumpkin to fall top to bottom (bigger = slower)
+  const FALL_SECONDS = 4; // seconds for a pumpkin to fall top to bottom (bigger = slower)
   let lastTime = null;
   let pieces = Array.from({length: 84}, () => ({
     x: Math.random() * canvas.width,
