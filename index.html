@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PREGAME PARTY INVITE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="startScreen">
+    <div style="text-align: center;">
+      <p style="font-size: 18px; margin-bottom: 10px;">Mobile use only</p>
+      <button id="startBtn">Click to Start</button>
+      <p style="font-size: 16px; margin-top: 10px;">Volume up 🔊</p>
+    </div>
+  </div>
+
+  <div id="animationWrapper" style="display: none;">
+    <div class="envelope-container">
+      <img src="envelope_closed.png" alt="Closed Envelope" class="envelope" id="envelopeClosed">
+      <img src="envelope_open.png" alt="Open Envelope" class="envelope" id="envelopeOpen" style="display: none;">
+      <img src="envelope_half.png" alt="Half-Open Envelope" class="envelope" id="envelopeHalf" style="display: none;">
+    </div>
+
+    <img src="invitation.png" alt="Invitation" class="invitation-img" />
+    <img src="words.png" id="wordsImage" />
+
+    <div class="face-overlay" id="faceOverlay">
+      <img src="2.png" alt="Raegan Face with Bubble" class="face-shake" />
+    </div>
+
+    <canvas id="confetti"></canvas>
+
+    <audio id="partyMusic">
+      <source src="music.mp3#t=194" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
