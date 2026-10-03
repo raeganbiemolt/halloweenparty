@@ -16,14 +16,14 @@ document.getElementById('startBtn').addEventListener('click', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   let useDrinks = false;
-  let pieces = Array.from({length: 150}, () => ({
+  let pieces = Array.from({length: 112}, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * -canvas.height,
     w: Math.random() * 8 + 4,
     h: Math.random() * 10 + 4,
     a: Math.random() * Math.PI * 2,
     c: `hsl(${Math.random() * 360}, 100%, 50%)`,
-    d: Math.random() * 5 + 2,
+    d: Math.random() * 1.5 + 1,
     img: null
   }));
 
